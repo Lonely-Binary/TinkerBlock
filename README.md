@@ -64,10 +64,10 @@ folder, or copy a `.py` to the board with Thonny.
 | TK51 | TM1637 4-Digit Display (0.56 inch) | [`tk51-tm1637-display`](blocks/tk51-tm1637-display) | 4 + 4 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/tm1637-display) |
 | TK52 | 8x8 LED Matrix | [`tk52-matrix-led`](blocks/tk52-matrix-led) | 1 + 1 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/matrix-led) |
 | TK53 | 74HC595 Segment LED | [`tk53-hc595-segment-led`](blocks/tk53-hc595-segment-led) | 1 + 1 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/hc595-segment-led) |
-| TK57 | Reflective Optical Sensor | [`tk57-reflective-optical-sensor`](blocks/tk57-reflective-optical-sensor) | 1 + 1 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/reflective-optical-sensor) |
-| TK59 | Piezo-Ceramic Sensor | [`tk59-piezo-sensor`](blocks/tk59-piezo-sensor) | 1 + 1 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/piezo-sensor) |
-| TK61 | Infrared Speed Sensor | [`tk61-ir-speed-sensor`](blocks/tk61-ir-speed-sensor) | 1 + 1 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/ir-speed-sensor) |
-| TK62 | Tilt Sensor | [`tk62-tilt-sensor`](blocks/tk62-tilt-sensor) | 1 + 1 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/tilt-sensor) |
+| TK57 | Reflective Optical Sensor | [`tk57-reflective-optical-sensor`](blocks/tk57-reflective-optical-sensor) | 2 + 1 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/reflective-optical-sensor) |
+| TK59 | Piezo-Ceramic Sensor | [`tk59-piezo-sensor`](blocks/tk59-piezo-sensor) | 2 + 2 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/piezo-sensor) |
+| TK61 | Infrared Speed Sensor | [`tk61-ir-speed-sensor`](blocks/tk61-ir-speed-sensor) | 2 + 2 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/ir-speed-sensor) |
+| TK62 | Tilt Sensor | [`tk62-tilt-sensor`](blocks/tk62-tilt-sensor) | 2 + 2 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/tilt-sensor) |
 | TK63 | Infrared Transmitter | [`tk63-ir-transmitter`](blocks/tk63-ir-transmitter) | 1 + 1 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/ir-transmitter) |
 | TK64 | Infrared Photodiode | [`tk64-ir-photodiode`](blocks/tk64-ir-photodiode) | 1 + 1 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/ir-photodiode) |
 | TK65 | Steam Sensor | [`tk65-steam-sensor`](blocks/tk65-steam-sensor) | 1 + 1 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/steam-sensor) |
