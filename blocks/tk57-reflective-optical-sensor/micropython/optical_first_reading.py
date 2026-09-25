@@ -6,7 +6,7 @@
 
     GND    -> GND
     VCC    -> 3V3   (never 5V: SIGNAL rises to VCC over a dark
-                     surface, and 5V overloads the emitter resistor)
+                     surface, and these pins take 3.3 V)
     NC     -> nothing   (unconnected on the board)
     SIGNAL -> GPIO 4 on an ESP32-S3, GPIO 34 on an ESP32,
               GP26 on a Raspberry Pi Pico

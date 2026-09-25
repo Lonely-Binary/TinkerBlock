@@ -5,9 +5,9 @@
   up, header at the bottom:
 
     GND    -> GND
-    VCC    -> 3V3, on every board, the Uno included.
-              SIGNAL rises to VCC over a dark surface, and 5V
-              overloads the block's 62-ohm emitter resistor.
+    VCC    -> 3V3 on an ESP32, ESP32-S3 or Pico; 5V on an Uno.
+              SIGNAL rises to VCC over a dark surface, so VCC
+              is the voltage your board's pins run at.
     NC     -> nothing   (unconnected on the board)
     SIGNAL -> GPIO 4 on an ESP32-S3, GPIO 34 on an ESP32,
               A0 on an Uno, GP26 on a Raspberry Pi Pico
