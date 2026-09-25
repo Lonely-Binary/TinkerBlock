@@ -1,0 +1,27 @@
+// GPIO numbers. Uno: 9, 10, 11. ESP32: 25, 26, 27. ESP32-S3: 4, 5, 6.
+// Pico: 13, 14, 15.
+const int RED_PIN = 4;
+const int YELLOW_PIN = 5;
+const int GREEN_PIN = 6;
+
+// Set all three at once, so no step can leave a light on by mistake.
+void show(bool red, bool yellow, bool green) {
+  digitalWrite(RED_PIN, red ? HIGH : LOW);
+  digitalWrite(YELLOW_PIN, yellow ? HIGH : LOW);
+  digitalWrite(GREEN_PIN, green ? HIGH : LOW);
+}
+
+void setup() {
+  pinMode(RED_PIN, OUTPUT);
+  pinMode(YELLOW_PIN, OUTPUT);
+  pinMode(GREEN_PIN, OUTPUT);
+}
+
+void loop() {
+  show(HIGH, LOW, LOW);   // red
+  delay(5000);
+  show(LOW, LOW, HIGH);   // green
+  delay(5000);
+  show(LOW, HIGH, LOW);   // yellow
+  delay(2000);
+}
