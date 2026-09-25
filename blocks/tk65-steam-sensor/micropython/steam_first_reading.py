@@ -1,14 +1,13 @@
 """
-  Infrared Receiver - first reading, MicroPython       TK64 / /p/tk64
+  Steam Sensor - first reading, MicroPython             TK65 / /p/tk65
 
   Wiring. Count from the square pad on the TinkerBlock board, parts
   up, header at the bottom:
 
     GND    -> GND
-    VCC    -> 3V3   (never 5V: strong infrared takes SIGNAL to
-              about VCC - 0.4 V)
+    VCC    -> 3V3   (never 5V: a wet board puts VCC on the pin)
     NC     -> nothing   (unconnected on the board)
-    SIGNAL -> GPIO 4 on an ESP32-S3, GPIO 34 on an ESP32,
+    SIGNAL -> GPIO 34 on an ESP32, GPIO 4 on an ESP32-S3,
               GP26 on a Raspberry Pi Pico
 
   Thonny
@@ -23,15 +22,13 @@ import time
 from machine import ADC, Pin
 
 # The GPIO number SIGNAL is wired to. ESP32: 34. ESP32-S3: 4. Pico: 26.
-IR_PIN = 4
+STEAM_PIN = 4
 
-adc = ADC(Pin(IR_PIN))
+adc = ADC(Pin(STEAM_PIN))
 if sys.platform == "esp32":           # ESP32 and ESP32-S3
     adc.atten(ADC.ATTN_11DB)          # the full range, to about 3.1 V
 
 while True:
-    total = 0
-    for _ in range(16):               # the mean of 16 reads
-        total += adc.read_u16()       # more infrared, higher
-    print(total // 16)
-    time.sleep_ms(200)
+    # 0 dry; water across the loops raises it, up to 65535.
+    print("reading", adc.read_u16())
+    time.sleep_ms(250)
