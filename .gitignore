@@ -16,3 +16,7 @@ Desktop.ini
 # _CN
 *_CN.*
 *_CN
+
+# Python
+__pycache__/
+*.pyc
