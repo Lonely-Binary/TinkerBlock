@@ -1,64 +1,54 @@
+"""
+  74HC595 Segment LED - count 0 to 9, MicroPython       TK53 / /p/tk53
+
+  Wiring. Count from pin 1, printed GND-1 on the TinkerBlock board
+  (this board has no square pad), digit up, header at the bottom:
+
+    GND   -> GND
+    VCC   -> 3V3   (never 5V: at 5V the chip may not read 3.3 V
+             as HIGH)
+    NC    -> nothing   (unconnected on the board)
+    LATCH -> GPIO 27 on an ESP32, GPIO 6 on an ESP32-S3, GP2 on a Pico
+    CLOCK -> GPIO 26 on an ESP32, GPIO 5 on an ESP32-S3, GP3 on a Pico
+    DATA  -> GPIO 25 on an ESP32, GPIO 4 on an ESP32-S3, GP4 on a Pico
+
+  Thonny
+    Run > Configure interpreter   MicroPython (ESP32) or
+                                  MicroPython (Raspberry Pi Pico)
+    Save it to the board as main.py to run it on every power-up.
+    Nothing to install: machine is built in.
+"""
+
 from machine import Pin
 import time
 
-# Pin number: change these to match your wiring
-LATCH_PIN = 0   # GPIO connected to LATCH (e.g. GPIO 0)
-CLOCK_PIN = 1   # GPIO connected to CLOCK (e.g. GPIO 1)
-DATA_PIN = 2    # GPIO connected to DATA (e.g. GPIO 2)
+# The GPIO numbers LATCH, CLOCK and DATA are wired to.
+# ESP32: 27, 26, 25. ESP32-S3: 6, 5, 4. Pico: 2, 3, 4.
+latch = Pin(6, Pin.OUT)
+clock = Pin(5, Pin.OUT)
+data = Pin(4, Pin.OUT)
 
-# 7-segment display segment code table (common anode, numbers 0-9)
-digit_patterns = [
-    0b11111100,  # 0
-    0b01100000,  # 1
-    0b11011010,  # 2
-    0b11110010,  # 3
-    0b01100110,  # 4
-    0b10110110,  # 5
-    0b10111110,  # 6
-    0b11100000,  # 7
-    0b11111110,  # 8
-    0b11110110   # 9
-]
+# One byte per digit. Bit 0 is segment a (QA) and bit 7 the
+# decimal point (QH). The digit is common cathode: a 1 lights.
+DIGITS = [0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F]
+DOT = 0x80
 
-# Initialize pins
-latch = Pin(LATCH_PIN, Pin.OUT)
-clock = Pin(CLOCK_PIN, Pin.OUT)
-data = Pin(DATA_PIN, Pin.OUT)
 
-def display_digit(digit):
-    """Display digit function"""
-    if digit < 0 or digit > 9:
-        return  # Check range
-    
-    # Latch pin LOW, ready to receive data
+def show(pattern):
+    """Eight bits in, most significant first, then one latch."""
     latch.value(0)
-    
-    # Send data through shift register
-    shift_out(data, clock, digit_patterns[digit])
-    
-    # Latch pin HIGH, output data to display
-    latch.value(1)
+    for i in range(7, -1, -1):
+        data.value((pattern >> i) & 1)
+        clock.value(1)              # the rising edge shifts it in
+        clock.value(0)
+    latch.value(1)                  # the rising edge shows it
 
-def shift_out(data_pin, clock_pin, value):
-    """Shift output function (LSBFIRST, least significant bit first)"""
-    for i in range(8):
-        # Send least significant bit
-        data_pin.value(value & 0x01)
-        # Clock rising edge
-        clock_pin.value(1)
-        time.sleep_us(1)
-        clock_pin.value(0)
-        time.sleep_us(1)
-        # Shift right by one bit
-        value >>= 1
 
-print("74HC595 7-segment display program started")
-print("Cycling through 0-9")
-
-# Main loop: runs forever
+show(0)                             # blank
 while True:
-    # Cycle through 0-9
-    for i in range(10):
-        display_digit(i)
-        print(f"Display number: {i}")
-        time.sleep(1)  # Switch number every second
+    for n in range(10):
+        show(DIGITS[n])
+        print(n, hex(DIGITS[n]))
+        time.sleep(1)
+    show(DOT)                       # a dot between rounds
+    time.sleep(1)

@@ -1,55 +1,74 @@
-// Pin number: change these to match your wiring
-#define LATCH_PIN 8   // Arduino digital pin connected to LATCH (e.g. D8)
-#define CLOCK_PIN 12  // Arduino digital pin connected to CLOCK (e.g. D12)
-#define DATA_PIN 11   // Arduino digital pin connected to DATA (e.g. D11)
+/*
+  74HC595 Segment LED - count 0 to 9                  TK53 / /p/tk53
 
-// 7-segment display segment code table (common anode, numbers 0-9)
-byte digitPatterns[10] = {
-  0b11111100,  // 0
-  0b01100000,  // 1
-  0b11011010,  // 2
-  0b11110010,  // 3
+  Wiring. Count from pin 1, printed GND-1 on the TinkerBlock board
+  (this board has no square pad), digit up, header at the bottom:
+
+    GND   -> GND
+    VCC   -> your board's logic supply: 5V on an Uno, 3V3 on an
+             ESP32, ESP32-S3 or Pico. At 5V the chip may not read
+             a 3.3 V board's HIGH, so never 5V beside a 3.3 V board.
+    NC    -> nothing   (unconnected on the board)
+    LATCH -> D8 on an Uno, GPIO 27 on an ESP32, GPIO 6 on an
+             ESP32-S3, GP2 on a Raspberry Pi Pico
+    CLOCK -> D12 on an Uno, GPIO 26 on an ESP32, GPIO 5 on an
+             ESP32-S3, GP3 on a Raspberry Pi Pico
+    DATA  -> D11 on an Uno, GPIO 25 on an ESP32, GPIO 4 on an
+             ESP32-S3, GP4 on a Raspberry Pi Pico
+
+  Arduino IDE
+    Tools > Board            your board, e.g. Arduino Uno
+    Tools > Port             the one that appears when you plug in
+    Tools > USB CDC On Boot  Enabled   (ESP32-S3 only)
+    No library to install: shiftOut is built in.
+    Serial Monitor at 115200.
+*/
+
+// The pins LATCH, CLOCK and DATA are wired to. These are the Uno's.
+// ESP32: 27, 26, 25. ESP32-S3: 6, 5, 4. Pico: 2, 3, 4.
+const int LATCH_PIN = 8;
+const int CLOCK_PIN = 12;
+const int DATA_PIN = 11;
+
+// One byte per digit. Bit 0 is segment a (QA) and bit 7 the
+// decimal point (QH). The digit is common cathode: a 1 lights.
+const byte DIGITS[10] = {
+  0b00111111,  // 0
+  0b00000110,  // 1
+  0b01011011,  // 2
+  0b01001111,  // 3
   0b01100110,  // 4
-  0b10110110,  // 5
-  0b10111110,  // 6
-  0b11100000,  // 7
-  0b11111110,  // 8
-  0b11110110   // 9
+  0b01101101,  // 5
+  0b01111101,  // 6
+  0b00000111,  // 7
+  0b01111111,  // 8
+  0b01101111,  // 9
 };
+const byte DOT = 0b10000000;   // the decimal point, QH
+
+// Eight bits in, then one latch: the digit changes all at once.
+void show(byte pattern) {
+  digitalWrite(LATCH_PIN, LOW);
+  shiftOut(DATA_PIN, CLOCK_PIN, MSBFIRST, pattern);
+  digitalWrite(LATCH_PIN, HIGH);         // the rising edge shows it
+}
 
 void setup() {
-  // Initialize pin modes
+  Serial.begin(115200);
   pinMode(LATCH_PIN, OUTPUT);
   pinMode(CLOCK_PIN, OUTPUT);
   pinMode(DATA_PIN, OUTPUT);
-  
-  // Start serial for debugging (9600 baud)
-  Serial.begin(9600);
-  
-  Serial.println("74HC595 7-segment display program started");
-  Serial.println("Cycling through 0-9");
+  show(0);                               // blank
 }
 
 void loop() {
-  // Cycle through 0-9
-  for (int i = 0; i < 10; i++) {
-    displayDigit(i);
-    Serial.print("Display number: ");
-    Serial.println(i);
-    delay(1000);  // Switch number every second
+  for (int n = 0; n < 10; n++) {
+    show(DIGITS[n]);
+    Serial.print(n);
+    Serial.print("  0x");
+    Serial.println(DIGITS[n], HEX);
+    delay(1000);
   }
-}
-
-// Display digit function
-void displayDigit(int digit) {
-  if (digit < 0 || digit > 9) return;  // Check range
-  
-  // Latch pin LOW, ready to receive data
-  digitalWrite(LATCH_PIN, LOW);
-  
-  // Send data through shift register
-  shiftOut(DATA_PIN, CLOCK_PIN, LSBFIRST, digitPatterns[digit]);
-  
-  // Latch pin HIGH, output data to display
-  digitalWrite(LATCH_PIN, HIGH);
+  show(DOT);                             // a dot between rounds
+  delay(1000);
 }

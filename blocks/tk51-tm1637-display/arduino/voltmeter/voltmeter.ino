@@ -1,22 +1,33 @@
-// A voltmeter readout: the voltage on A0, to two decimals, on a digit panel.
-//
-// Wiring, display to board:
-//   Display GND   -> board GND
-//   Display VCC   -> board 5V
-//   Display CLOCK -> D2
-//   Display DATA  -> D3
-// And the thing being measured:
-//   Potentiometer outer pins -> 5V and GND, wiper -> A0
-//   (or just a jumper from A0 to 5V, 3V3 or GND to test it)
-//
-// Arduino IDE: board "Arduino Uno", and "TM1637" by Avishay Orpaz from the
-// Library Manager. Nothing else to set.
+/*
+  TM1637 4-Digit Display - a voltmeter readout     TK51 / /p/tk51
+
+  The voltage on A0, to two decimals, on a digit panel.
+
+  Wiring. No pad on this board is square, so go by the names
+  printed on the back: GND, VCC, clock, data. Seen from the
+  display side with the header on the left, GND is the top pin.
+
+    GND   -> GND
+    VCC   -> 5V
+    CLOCK -> D2
+    DATA  -> D3
+  And the thing being measured, 0 to 5 V only:
+    a potentiometer's outer pins to 5V and GND, its wiper to A0,
+    or a jumper from A0 to 5V, 3V3 or GND to test it.
+
+  Arduino IDE
+    Tools > Board            Arduino Uno
+    Tools > Port             the one that appears when you plug in
+    Library: "TM1637" by Avishay Orpaz, from Tools > Manage
+    Libraries. It installs TM1637Display.h.
+*/
 
 #include <TM1637Display.h>
 
 #define CLOCK_PIN 2
 #define DATA_PIN  3
-#define POINT     0b10000000   // after the first of the three digits written
+#define POINT     0b10000000   // after the first digit written
+#define RAIL_MV   5000         // measure your 5V pin and put it here
 
 TM1637Display display(CLOCK_PIN, DATA_PIN);
 
@@ -26,13 +37,11 @@ void setup() {
 }
 
 void loop() {
-  long mv = (long)analogRead(A0) * 5000 / 1023;   // millivolts, against the 5 V rail
-  int centivolts = (mv + 5) / 10;                 // 0 to 500, rounded
+  long mv = (long)analogRead(A0) * RAIL_MV / 1023;  // millivolts
+  int centivolts = (mv + 5) / 10;                    // 0 to 500
 
-  // Three digits starting at position 1, leading zeros on, point after the
-  // first of them. 0.05 and 4.98 both read correctly this way; four digits
-  // with leading zeros off would blank what it does not need and leave the
-  // point sitting beside nothing.
+  // Three digits from position 1, leading zeros on, the point
+  // after the first of them: 0.05 and 4.98 both read right.
   display.showNumberDecEx(centivolts, POINT, true, 3, 1);
   delay(200);
 }

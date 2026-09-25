@@ -61,7 +61,7 @@ folder, or copy a `.py` to the board with Thonny.
 | TK42 | LM75 Temperature Sensor | [`tk42-lm75`](blocks/tk42-lm75) | 1 + 1 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/lm75) |
 | TK43 | TTP223 Touch Sensor | [`tk43-tp223-touch-sensor`](blocks/tk43-tp223-touch-sensor) | 2 + 1 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/tp223-touch-sensor) |
 | TK50 | Ultrasonic Distance Sensor | [`tk50-ultrasonic-sensor`](blocks/tk50-ultrasonic-sensor) | 3 + 1 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/ultrasonic-sensor) |
-| TK51 | TM1637 4-Digit Display (0.56 inch) | [`tk51-tm1637-display`](blocks/tk51-tm1637-display) | 4 + 1 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/tm1637-display) |
+| TK51 | TM1637 4-Digit Display (0.56 inch) | [`tk51-tm1637-display`](blocks/tk51-tm1637-display) | 4 + 4 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/tm1637-display) |
 | TK52 | 8x8 LED Matrix | [`tk52-matrix-led`](blocks/tk52-matrix-led) | 1 + 1 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/matrix-led) |
 | TK53 | 74HC595 Segment LED | [`tk53-hc595-segment-led`](blocks/tk53-hc595-segment-led) | 1 + 1 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/hc595-segment-led) |
 | TK57 | Reflective Optical Sensor | [`tk57-reflective-optical-sensor`](blocks/tk57-reflective-optical-sensor) | 1 + 1 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/reflective-optical-sensor) |

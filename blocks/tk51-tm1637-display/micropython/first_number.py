@@ -1,5 +1,5 @@
 """
-  TM1637 4-Digit Display - colon and points        TK51 / /p/tk51
+  TM1637 4-Digit Display - the first number        TK51 / /p/tk51
 
   Wiring. No pad on this board is square, so go by the names
   printed on the back: GND, VCC, clock, data. Seen from the
@@ -20,15 +20,16 @@
 """
 
 import time
-from tm1637 import TM1637, COLON
+from tm1637 import TM1637
 
 # CLOCK, DATA. ESP32: 18, 19. ESP32-S3: 4, 5. Pico: 2, 3.
 display = TM1637(18, 19)
 
-# 12:34 on a clock panel, 12.34 on a digit panel: the same four
-# bytes. The colon blinks once a second.
+display.brightness(4)       # sent with the next write
+display.number(1234)        # stays there with no further help
+time.sleep(2)
+
 while True:
-    display.number(1234, COLON, True)
-    time.sleep_ms(500)
-    display.number(1234, 0, True)
-    time.sleep_ms(500)
+    for i in range(61):
+        display.number(i)   # leading zeros off: 7 is "   7"
+        time.sleep_ms(500)
