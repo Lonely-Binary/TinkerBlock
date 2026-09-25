@@ -13,7 +13,7 @@
 #include <Wire.h>
 #include "I2CKeyPad.h"
 
-const uint8_t KEYPAD_ADDRESS = 0x20;   // as shipped
+const uint8_t KEYPAD_ADDRESS = 0x20;   // fixed on the TK85; the compact adapter ships here
 
 // 16 keys, then N (no key) and F (fail). Pick the one for your keypad.
 char keymap[19] = "DCBA#9630852*741NF";      // soft keypad: 5-pack, TinkerBlock

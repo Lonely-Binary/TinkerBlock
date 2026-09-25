@@ -73,7 +73,7 @@ folder, or copy a `.py` to the board with Thonny.
 | TK65 | Steam Sensor | [`tk65-steam-sensor`](blocks/tk65-steam-sensor) | 1 + 1 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/steam-sensor) |
 | TK70 | Linear Hall Effect Sensor | [`tk70-linear-hall-sensor`](blocks/tk70-linear-hall-sensor) | 1 + 1 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/linear-hall-sensor) |
 | TK85 | Matrix Keypad with I2C Adapter (4x4, PCF8574) | [`tk85-matrix-keypad`](blocks/tk85-matrix-keypad) | 4 + 1 + extras | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/matrix-keypad) |
-| TK89 | 1.8-inch TFT Display | [`tk89-tft-1-8-inch`](blocks/tk89-tft-1-8-inch) | 1 + 1 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/tft-1-8-inch) |
+| TK89 | 1.8-inch TFT Display (ST7735, 128x160) | [`tk89-tft-1-8-inch`](blocks/tk89-tft-1-8-inch) | 3 + 3 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/tft-1-8-inch) |
 | TK94 | Five-Direction Joystick | [`tk94-five-direction-joystick`](blocks/tk94-five-direction-joystick) | 1 + 1 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/five-direction-joystick) |
 | TK95 | Dual Bright LEDs | [`tk95-dual-bright-leds`](blocks/tk95-dual-bright-leds) | 1 + 1 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/dual-bright-leds) |
 | TK96 | Mechanical Key and LED | [`tk96-mechanical-key`](blocks/tk96-mechanical-key) | 1 + 1 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/mechanical-key) |

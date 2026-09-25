@@ -5,7 +5,7 @@
 char keymap[19] = "DCBA#9630852*741NF";      // soft keypad
 // char keymap[19] = "D#0*C987B654A321NF";   // heavy-duty keypad
 
-I2CKeyPad keyPad(0x20);
+I2CKeyPad keyPad(0x20);   // fixed on the TK85; the compact adapter ships here
 char last = 'N';
 
 void setup() {

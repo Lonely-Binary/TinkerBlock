@@ -1,7 +1,7 @@
 from machine import Pin, I2C
 import time
 
-ADDRESS = 0x20
+ADDRESS = 0x20                   # fixed on the TK85; the compact adapter ships here
 KEYMAP = "DCBA#9630852*741"      # soft keypad
 # KEYMAP = "D#0*C987B654A321"    # heavy-duty keypad
 
