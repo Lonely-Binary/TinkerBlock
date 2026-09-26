@@ -11,23 +11,25 @@ void setup() {
 
 void loop() {
   int val = analogRead(JOYSTICK_PIN);   // Different ranges = direction
-  if (val >= 100 && val <= 130) {
+  // Up about 114, press 186, left 279, down 455, right 1023, and 0
+  // with nothing pressed. Each range runs halfway to its neighbours.
+  if (val >= 57 && val < 150) {
     // Up: LED on
     digitalWrite(LED_PIN, HIGH);
     Serial.println("Up - LED on");
-  } else if (val >= 450 && val <= 470) {
+  } else if (val >= 367 && val < 739) {
     // Down: LED off
     digitalWrite(LED_PIN, LOW);
     Serial.println("Down - LED off");
-  } else if (val >= 270 && val <= 290) {
+  } else if (val >= 233 && val < 367) {
     // Left: low tone
     tone(BUZZER_PIN, 262);
     Serial.println("Left - low");
-  } else if (val >= 1000 && val <= 1024) {
+  } else if (val >= 739) {
     // Right: high tone
     tone(BUZZER_PIN, 523);
     Serial.println("Right - high");
-  } else if (val >= 180 && val <= 190) {
+  } else if (val >= 150 && val < 233) {
     // Press: stop buzzer
     noTone(BUZZER_PIN);
     Serial.println("Press - stop");
