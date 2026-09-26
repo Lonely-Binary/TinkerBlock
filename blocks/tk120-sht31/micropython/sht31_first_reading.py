@@ -1,5 +1,5 @@
 """
-  SHT31 - temperature and humidity, MicroPython         TK120 / /p/tk120
+  SHT31 - first reading, MicroPython                    TK120 / /p/tk120
 
   Wiring. Count from the square pad on the TinkerBlock board, sensor
   side up, header at the bottom:
