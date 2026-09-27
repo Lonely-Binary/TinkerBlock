@@ -81,6 +81,7 @@ folder, or copy a `.py` to the board with Thonny.
 | TK101 | PDM Microphone | [`tk101-pdm-microphone`](blocks/tk101-pdm-microphone) | 2 + 0 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/pdm-microphone) |
 | TK103 | I2S DAC | [`tk103-i2s-dac`](blocks/tk103-i2s-dac) | 2 + 0 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/i2s-dac) |
 | TK109 | CAN Bus | [`tk109-can-bus`](blocks/tk109-can-bus) | 1 + 0 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/can-bus) |
+| TK115 | 3-Axis Accelerometer | [`tk115-3-axis-accelerometer`](blocks/tk115-3-axis-accelerometer) | 4 + 4 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/3-axis-accelerometer) |
 | TK119 | INA219 Current Monitor | [`tk119-ina219`](blocks/tk119-ina219) | 3 + 0 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/ina219) |
 | TK120 | SHT31 Temperature and Humidity Sensor | [`tk120-sht31`](blocks/tk120-sht31) | 3 + 1 | [handbook](https://learn.lonelybinary.com/tinkerblock/blocks/sht31) |
 

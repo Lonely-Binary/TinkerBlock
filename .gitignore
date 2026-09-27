@@ -20,3 +20,6 @@ Desktop.ini
 # Python
 __pycache__/
 *.pyc
+
+# Arduino CLI build output
+build/
